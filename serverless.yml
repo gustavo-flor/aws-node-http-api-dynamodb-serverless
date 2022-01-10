@@ -1,0 +1,21 @@
+service: aws-node-http-api-serverless
+frameworkVersion: '2 || 3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: '20201221'
+
+functions:
+  getItems:
+    handler: handler.getItems
+    events:
+      - httpApi:
+          path: /{tableName}
+          method: get
+  putItem:
+    handler: handler.putItem
+    events:
+      - httpApi:
+          path: /{tableName}
+          method: post
